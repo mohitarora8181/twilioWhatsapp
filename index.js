@@ -14,25 +14,45 @@ app.use((req, res, next) => {
   next()
 })
 
-const accountSid = process.env.TWILIO_ACCOUNT_SID
-const authToken = process.env.TWILIO_AUTH_TOKEN
-const client = require('twilio')(accountSid, authToken)
-
 // Temp route
-app.post('/api/v1/sendWhatsapp', (req, res) => {
-  console.log(req.body)
+app.post('/api/sendWhatsapp', async (req, res) => {
+  try {
+    // Get sandbox, sid & token  from .env file or from req.body
+    const sandbox = process.env.TWILIO_SANDBOX || req.body.twilio_sandbox
+    const accountSid =
+      process.env.TWILIO_ACCOUNT_SID || req.body.twilio_account_sid
+    const authToken =
+      process.env.TWILIO_AUTH_TOKEN || req.body.twilio_auth_token
+    
+    const client = require('twilio')(accountSid, authToken)
 
-  client.messages
-    .create({
-      from: 'whatsapp:+14155238856', // Temporary sandbox number
-      body: req.body.message,
-      to: `whatsapp:${req.body.to}`,
+    await client.messages
+      .create({
+        from: `whatsapp:${sandbox}`,
+        body: req.body.message,
+        to: `whatsapp:${req.body.to}`,
+      })
+      .then((message) => {
+        res.status(200).json({
+          msg: 'Your message sent successfully!',
+          message,
+        })
+      })
+      .catch((err) => {
+        console.log(err)
+        res.status(400).json({
+          message:
+            'Failed to send message. Please check your twilio sid, token and mobile number',
+          err,
+        })
+      })
+  } catch (err) {
+    console.log(err)
+    res.status(400).json({
+      msg: 'Somethig went wrong',
+      err,
     })
-    .then((message) => console.log(message))
-    .catch((err) => console.log(err))
-  res.status(200).json({
-    message: 'Your message sent successfully!',
-  })
+  }
 })
 
 app.listen(process.env.PORT || 5000)
