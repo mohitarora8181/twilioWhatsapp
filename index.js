@@ -1,7 +1,6 @@
 require('dotenv').config()
 const express = require('express')
 var cors = require('cors')
-const wbm = require('wbm');
 
 const app = express()
 app.use(express.json())
@@ -35,22 +34,5 @@ app.post('/api/v1/sendWhatsapp', (req, res) => {
     message: 'Your message sent successfully!',
   })
 })
-
-// Temp route
-app.get('/api/v1/whatsapp', (req, res) => {
-  console.log(req.body)
-
-  wbm.start().then(async () => {
-    const phones = ['+8801850844444'];
-    const message = 'Good Morning.';
-    await wbm.send(phones, message);
-    await wbm.end();
-}).catch(err => console.log(err));
-
-  res.status(200).json({
-    message: 'Your message sent successfully!',
-  })
-})
-
 
 app.listen(process.env.PORT || 5000)
