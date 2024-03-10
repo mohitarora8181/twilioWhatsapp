@@ -1,7 +1,5 @@
 # Whatsapp Message Sender
 
-![WhatsApp](https://media.giphy.com/media/H7xLPJpo36p2U/giphy.gif)
-
 ## Overview
 This project allows users to send WhatsApp messages without being redirected to WhatsApp Web or the app itself. It utilizes the Twilio API for backend functionality. 
 
