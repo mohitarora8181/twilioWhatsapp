@@ -2,10 +2,20 @@
   "name": "whatsapp-integration",
   "version": "1.0.0",
   "description": "",
+<<<<<<< HEAD
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "start:dev": "nodemon index.js",
+=======
+  "main": "app.js",
+  "engines": {
+    "node":"18.x"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "start:dev": "node index.js",
+>>>>>>> 36191617a29bc41f665e98171144bd16a54818ac
     "vercel:local": "vercel dev --listen 3000",
     "tailwind:css": "postcss public/styles/tailwind.css -o public/styles/style.css"
   },
