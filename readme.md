@@ -1,29 +1,30 @@
-# Send whatsapp message from nodejs via twilio
+# Whatsapp Message Sender
 
+![WhatsApp](https://media.giphy.com/media/H7xLPJpo36p2U/giphy.gif)
 
-### Send message with this API:
+## Overview
+This project allows users to send WhatsApp messages without being redirected to WhatsApp Web or the app itself. It utilizes the Twilio API for backend functionality. 
 
-```
-POST /api/sendWhatsapp HTTP/1.1
-Host: twilio-whatsapp-nodejs.vercel.app
-Content-Type: application/json
-Content-Length: 243
+## Features
+- Allows users to input phone numbers and messages to send via WhatsApp.
+- No redirection to WhatsApp Web or app required.
+- Utilizes Twilio API for sending messages.
 
-{
-    "to": "+8801878888888",
-    "message": "Sending message from API.",
-    "twilio_account_sid": "AC209cc2038a0cd9553c97ba476c1h8fdb",
-    "twilio_auth_token": "1d0890ecd0f689859d07a8ec05825b70",
-    "twilio_sandbox": "+14155237776"
-}
-```
-> For sandbox number, sid and auth token do the followings:
-- Create account
-- Activate [sandbox](https://www.twilio.com/console/sms/whatsapp/sandbox) for whatsapp.
-- Get SID and Auth token [here](https://console.twilio.com/) (Auth token is inside Project Info)
+## Tech Stack
+- EJS
+- Express
+- JavaScript
 
-Source code is updated at [this API](https://twilio-whatsapp-nodejs.vercel.app)
+## Getting Started
+To use this project, follow these steps:
 
-`vecel.json` file is for deploy on vercel. Tested and working fine with current version.
+1. **Create a Twilio Account:**
+   Sign up on [Twilio](https://www.twilio.com/) and get your credentials like SID, Auth Token, and Sandbox ID.
 
-More info for whatsapp in twilio [here](https://www.twilio.com/docs/whatsapp/quickstart/node#whatsnext-for-whatsapp-and-node)
+2. **Clone Repository:**
+3. **Install Dependencies:**
+4. **Set Environment Variables:**
+Create a `.env` file in the root directory and add the following parameters:
+5. **Start the Server:**
+6. **Testing:**
+Open your browser and go to `http://localhost:3000` to test the application.
