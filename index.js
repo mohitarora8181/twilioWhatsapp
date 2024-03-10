@@ -15,7 +15,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/favicon.ico', (req, res) => res.status(204));
 app.get('/',(req,res)=>{
-  res.render('test')
+  // res.render('test')
+  res.send("working")
 })
 // Temp route
 app.post('/api/sendWhatsapp', async (req, res) => {
