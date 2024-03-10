@@ -1,19 +1,21 @@
 require('dotenv').config()
 const express = require('express')
 var cors = require('cors')
+const path = require('path')
+
 
 const app = express()
 app.use(express.json())
 app.use(cors())
+app.set('view engine','ejs');
+app.use(express.static(path.join(__dirname, 'public')))
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use((req, res, next) => {
-  // console.log('URL from middleware => ' + req.url)
-  console.log('-------------------------------------------------------------')
-  console.log(req.protocol + '://' + req.headers.host + req.baseUrl + req.url)
-  console.log('-------------------------------------------------------------')
-  next()
+
+app.get('/',(req,res)=>{
+  res.render('test')
 })
-
 // Temp route
 app.post('/api/sendWhatsapp', async (req, res) => {
   try {
@@ -25,18 +27,20 @@ app.post('/api/sendWhatsapp', async (req, res) => {
       process.env.TWILIO_AUTH_TOKEN || req.body.twilio_auth_token
     
     const client = require('twilio')(accountSid, authToken)
+    console.log(req.body)
 
     await client.messages
       .create({
         from: `whatsapp:${sandbox}`,
         body: req.body.message,
-        to: `whatsapp:${req.body.to}`,
+        to: `whatsapp:+91${req.body.to}`,
       })
       .then((message) => {
-        res.status(200).json({
-          msg: 'Your message sent successfully!',
-          message,
-        })
+        // res.status(200).json({
+        //   msg: 'Your message sent successfully!',
+        //   message,
+        // })
+        res.redirect("/")
       })
       .catch((err) => {
         console.log(err)

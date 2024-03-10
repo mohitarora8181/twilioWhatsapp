@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Whatsapp Sender</title>
+    <!-- <link rel="stylesheet" href="/styles/style.css" type="text/css"> -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet">
+
+</head>
+
+<body class="h-full flex self-center justify-center bg-gradient-to-br from-indigo-500 to-pink-500">
+    <form action="/api/sendWhatsapp" method="post"
+        class="flex justify-between bg-white py-10 p-5 flex-col w-1/4 self-center border rounded-lg border-black shadow-yellow-500 shadow-2xl">
+        <input type="tel" placeholder="Write your Phone Number"
+            class="text-center my-5 border border-gray-300 p-2 rounded-lg" required name="to">
+        <textarea type="text" placeholder="Message" class="text-center my-5 border border-gray-300 p-2 rounded-lg"
+            required name="message" onkeypress="checkPress()"></textarea>
+
+        <button type="submit"
+            class="text-center flex gap-2 align-middle self-center max-w-max my-5 border text-white drop-shadow-2xl border-gray-300 p-2 rounded-lg bg-purple-500">
+            Send Message
+            <svg width="20px" height="20px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none"
+                class="self-center">
+                <path fill="#ffffff" fill-rule="evenodd"
+                    d="M2.345 2.245a1 1 0 0 1 1.102-.14l18 9a1 1 0 0 1 0 1.79l-18 9a1 1 0 0 1-1.396-1.211L4.613 13H10a1 1 0 1 0 0-2H4.613L2.05 3.316a1 1 0 0 1 .294-1.071z"
+                    clip-rule="evenodd" />
+            </svg>
+        </button>
+    </form>
+    <script>
+        function checkPress(e) {
+            const eve = window.event;
+            if(eve.code == "Enter" && eve.ctrlKey == true)
+                document.querySelector("button").click();
+        }
+    </script>
+</body>
+
+</html>
