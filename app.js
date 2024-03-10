@@ -13,7 +13,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
+app.get('/favicon.ico', (req, res) => res.status(204));
 app.get('/',(req,res)=>{
   res.render('test')
 })
