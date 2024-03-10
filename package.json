@@ -7,7 +7,7 @@
     "node":"18.x"
   },
   "scripts": {
-    "start": "node app.js postcss public/styles/index.css -o public/styles/style.css --watch",
+    "start": "node app.js",
     "start:dev": "node index.js",
     "vercel:local": "vercel dev --listen 3000",
     "tailwind:css": "postcss public/styles/tailwind.css -o public/styles/style.css"
