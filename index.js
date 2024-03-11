@@ -21,8 +21,7 @@ app.get('/', (req, res) => {
 
 app.post('/received',async (req,res)=>{
   console.log(req.body)
-  const message = req.body;
-  alert("Message received\n"+message)
+  const message = req.body.body;
   res.render('test',{message})
 })
 
