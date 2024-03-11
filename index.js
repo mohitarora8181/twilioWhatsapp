@@ -19,8 +19,8 @@ app.get('/', (req, res) => {
   res.render('test')
 })
 
-app.get('/received',async (req,res)=>{
-  console.log(req);
+app.post('/received',async (req,res)=>{
+  console.log(req.body);
 })
 
 app.get('/image', async (req, res) => {
