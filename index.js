@@ -2,20 +2,31 @@ require('dotenv').config()
 const express = require('express')
 var cors = require('cors')
 const path = require('path')
+const qrcode = require('qrcode')
 
 
 const app = express()
 app.use(express.json())
 app.use(cors())
 app.set("views", __dirname + "/views");
-app.set('view engine','ejs');
+app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')))
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/favicon.ico', (req, res) => res.status(204));
-app.get('/',(req,res)=>{
+app.get('/', (req, res) => {
   res.render('test')
+})
+
+app.get('/received',async (req,res)=>{
+  console.log(req);
+})
+
+app.get('/image', async (req, res) => {
+  const url = "http://wa.me/+14155238886?text=join%20brain-tone";
+  const qr = await qrcode.toDataURL(url);
+  res.send(`<center><img src="${qr}" alt="QR Code"/><center/>`);
 })
 // Temp route
 app.post('/api/sendWhatsapp', async (req, res) => {
@@ -26,7 +37,7 @@ app.post('/api/sendWhatsapp', async (req, res) => {
       process.env.TWILIO_ACCOUNT_SID || req.body.twilio_account_sid
     const authToken =
       process.env.TWILIO_AUTH_TOKEN || req.body.twilio_auth_token
-    
+
     const client = require('twilio')(accountSid, authToken)
     console.log(req.body)
 
