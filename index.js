@@ -16,11 +16,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/favicon.ico', (req, res) => res.status(204));
 app.get('/', (req, res) => {
-  res.render('test')
+  res.render('test',message="")
 })
 
 app.post('/received',async (req,res)=>{
-  console.log(req.body);
+  res.render('test',message=req.body.body)
 })
 
 app.get('/image', async (req, res) => {

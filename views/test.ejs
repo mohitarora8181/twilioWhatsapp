@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Whatsapp Sender</title>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <link rel="stylesheet" href="/styles/style.css" type="text/css">
-    <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet"> -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet">
 
 </head>
 
@@ -30,10 +31,15 @@
         </button>
         <p class="text-gray-500 text-center">Press Ctrl + Enter to send message</p>
     </form>
+    <div class="w-2/4">
+        <p class="text-white m-10 text-center">Received message from sender will appear below :- </p>
+        <h3><%message%></h3>
+    </div>
+
     <script>
         function checkPress(e) {
             const eve = window.event;
-            if(eve.code == "Enter" && eve.ctrlKey == true)
+            if (eve.code == "Enter" && eve.ctrlKey == true)
                 document.querySelector("button").click();
         }
     </script>
