@@ -14,13 +14,14 @@ app.use(express.static(path.join(__dirname, 'public')))
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/favicon.ico', (req, res) => res.status(204));
+// app.get('/favicon.ico', (req, res) => res.status(204));
 app.get('/', (req, res) => {
   res.render('test',message="")
 })
 
 app.post('/received',async (req,res)=>{
-  res.render('test',message=req.body.body)
+  console.log(req.body)
+  res.render('test',message=req.body)
 })
 
 app.get('/image', async (req, res) => {
