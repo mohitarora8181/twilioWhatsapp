@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
 app.post('/received',async (req,res)=>{
   console.log(req.body)
   const message = req.body;
-  res.render('test',{message:message.Body})
+  res.render('test',{message})
 })
 
 app.get('/image', async (req, res) => {
